@@ -145,9 +145,19 @@ async function checkConnection() {
     email: "ovikdevil@gmail.com"
   })
 
-  const errorMsg = Error('Ошибка интернет-соединения');
+
   const msgResponse = await response.json();
-  console.log(msgResponse);
+  try {
+    if(!msgResponse.status === 'ok') {
+      const connectionElement = document.querySelector('.no-connection');
+      connectionElement.classList.add('connection-is-active')
+      console.log(connectionElement);
+    } else {
+      console.log(msgResponse);
+    }
+  } catch {
+    console.log('Ыы');
+  }
 }
 
 
@@ -178,8 +188,16 @@ async function initApp() {
   }
 }
 
-
+// setInterval(() => {
+//   try {
+//     checkConnection();
+//   } catch(error) {
+//     console.error(error);
+//   }
+// }, 3000)
 
 initApp();
-
-
+// setInterval(() => {
+//   checkConnection();
+// }, 3000);
+checkConnection();
