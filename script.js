@@ -145,6 +145,7 @@ async function checkConnection() {
     email: "ovikdevil@gmail.com"
   })
 
+  const errorMsg = Error('Ошибка интернет-соединения');
   const msgResponse = await response.json();
   console.log(msgResponse);
 }
@@ -177,8 +178,8 @@ async function initApp() {
   }
 }
 
+
+
 initApp();
-const checkInterval = setInterval(function() {
-  checkConnection();
-}, 3000);
+
 
