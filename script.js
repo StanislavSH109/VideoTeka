@@ -139,9 +139,27 @@ function initAuth() {
   }));
 }
 
+async function checkConnection() {
+  const response = await fetch("https://sb-film.skillbox.cc/ping", {
+    method: "POST",
+    email: "ovikdevil@gmail.com"
+  })
+
+  const msgResponse = await response.json();
+  console.log(msgResponse);
+  if(msgResponse.status === 'ok') {
+    console.log('Status connection OK');
+  } else {
+    console.log('Интернета нету блять! Че в стране творится!');
+  }
+}
+
+
 async function initApp() {
   const app = document.getElementById("app");
   app.innerHTML = '';
+
+  
 
   try {
     const user = getUser();
@@ -165,3 +183,4 @@ async function initApp() {
 }
 
 initApp();
+checkConnection();
