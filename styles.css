@@ -142,3 +142,7 @@ body {
   background-color: red;
   color: whitesmoke;
 }
+
+.connection-is-active {
+  display: block;
+}
