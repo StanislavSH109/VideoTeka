@@ -147,11 +147,6 @@ async function checkConnection() {
 
   const msgResponse = await response.json();
   console.log(msgResponse);
-  if(msgResponse.status === 'ok') {
-    console.log('Status connection OK');
-  } else {
-    console.log('Интернета нету блять! Че в стране творится!');
-  }
 }
 
 
@@ -183,4 +178,7 @@ async function initApp() {
 }
 
 initApp();
-checkConnection();
+const checkInterval = setInterval(function() {
+  checkConnection();
+}, 3000);
+
