@@ -142,7 +142,8 @@ function initAuth() {
 async function checkConnection() {
   const startTime = Date.now();
   const noConnectionElement = document.querySelector('.no-connection');
-  const 
+  const slowConnectionElement = document.querySelector('.slow-connection');
+  
   try {
     const response = await fetch("https://sb-film.skillbox.cc/ping", {
       method: "POST",
@@ -157,10 +158,14 @@ async function checkConnection() {
       noConnectionElement.classList.add('connection-is-active');
       console.log(error.message);
     }
+
     const endTime = Date.now();
     const finishTime = endTime - startTime;
+
     if (finishTime > 500) {
-      noConnectionElement.classList.add('')
+      slowConnectionElement.classList.add('connection-is-active');
+    } else {
+      slowConnectionElement.classList.remove('connection-is-active');
     }
 }
 
