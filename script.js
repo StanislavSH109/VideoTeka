@@ -140,16 +140,28 @@ function initAuth() {
 }
 
 async function checkConnection() {
-  const response = await fetch("https://sb-film.skillbox.cc/ping", {
-    method: "POST",
-    email: "ovikdevil@gmail.com"
-  })
+  const startTime = Date.now();
+  const noConnectionElement = document.querySelector('.no-connection');
+  const 
+  try {
+    const response = await fetch("https://sb-film.skillbox.cc/ping", {
+      method: "POST",
+      email: "ovikdevil@gmail.com"
+    })
 
-
-  const msgResponse = await response.json();
-  if (!msgResponse === "ok") {
-    document.querySelector('no-connection').toggle('');
-  }
+    const msgResponse = await response.json();
+    console.log(msgResponse);
+    noConnectionElement.classList.remove('connection-is-active');
+    
+    } catch(error) {
+      noConnectionElement.classList.add('connection-is-active');
+      console.log(error.message);
+    }
+    const endTime = Date.now();
+    const finishTime = endTime - startTime;
+    if (finishTime > 500) {
+      noConnectionElement.classList.add('')
+    }
 }
 
 
