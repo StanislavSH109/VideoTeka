@@ -147,16 +147,8 @@ async function checkConnection() {
 
 
   const msgResponse = await response.json();
-  try {
-    if(!msgResponse.status === 'ok') {
-      const connectionElement = document.querySelector('.no-connection');
-      connectionElement.classList.add('connection-is-active')
-      console.log(connectionElement);
-    } else {
-      console.log(msgResponse);
-    }
-  } catch {
-    console.log('Ыы');
+  if (!msgResponse === "ok") {
+    document.querySelector('no-connection').toggle('');
   }
 }
 
@@ -188,16 +180,13 @@ async function initApp() {
   }
 }
 
-// setInterval(() => {
-//   try {
-//     checkConnection();
-//   } catch(error) {
-//     console.error(error);
-//   }
-// }, 3000)
-
 initApp();
-// setInterval(() => {
-//   checkConnection();
-// }, 3000);
 checkConnection();
+
+const timer = setInterval(() => {
+  checkConnection()
+}, 3000);
+
+setTimeout(() => {
+  clearInterval(timer)
+}, 10000);

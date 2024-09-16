@@ -127,7 +127,6 @@ body {
 }
 
 .no-connection {
-  display: flex;
   justify-content: center;
   display: none;
 }
